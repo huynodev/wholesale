@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Dev\Wholesale\Block\Customer\Wholesale\Add" name="wholesale.customer.form"
+                   template="Dev_Wholesale::form.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

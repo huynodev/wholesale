@@ -1,0 +1,91 @@
+<?php
+/**
+ * Wholesale Contact Admin Detail Template
+ *
+ * @author huynq8 ( huynq8@smartosc.com )
+ *
+ * @var $block \Dev\Wholesale\Block\Adminhtml\Wholesale\Info
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php
+$product = $block->getProductData($block->getWholesaleData());
+
+?>
+<div class="page-columns">
+    <div class="admin__old">
+        <div class="main-col">
+            <form method="post"
+                  action="<?= $block->getActionForm($block->getWholesaleData()) ?>" <?= $block->getBlockHtml('formkey') ?>
+            <section class="admin__page-section order-view-account-information">
+                <div class="admin__page-section-title">
+                    <span class="title">Wholesale Contact Information</span>
+                </div>
+                <div class="admin__page-section-content">
+                    <div class="admin__page-section-item order-information">
+                        <div class="admin__page-section-item-title">
+                            <span class="title">Product Wholesale</span>
+                        </div>
+                        <div class="admin__page-section-item-content">
+                            <table class="admin__table-secondary order-information-table">
+                                <tbody>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <td><?= $escaper->escapeHtml($product->getName()) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td><?= $block->getPriceProduct($product) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Quantity</th>
+                                    <td><?= $escaper->escapeHtml($product->getData('quantity_and_stock_status')['qty']) ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="admin__page-section-item order-account-information">
+                        <div class="admin__page-section-item-title">
+                            <span class="title">Contact Information</span>
+                        </div>
+                        <div class="admin__page-section-item-content">
+                            <table class="admin__table-secondary order-account-information-table">
+                                <tbody>
+                                <tr>
+                                    <th>Customer Contact</th>
+                                    <td><?= $escaper->escapeHtml($block->getWholesaleData()->getCustomerName()) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Email Contact</th>
+                                    <td><?= $escaper->escapeHtml($block->getWholesaleData()->getEmail()) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Phone Number</th>
+                                    <td><?= $escaper->escapeHtml($block->getWholesaleData()->getPhoneNumber()) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Message</th>
+                                    <td><?= $escaper->escapeHtml($block->getWholesaleData()->getMessage()) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Created At</th>
+                                    <td><?= $escaper->escapeHtml(date('Y/m/d H:i:s', $block->getWholesaleData()->getCreatedAt())) ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <?php if ($block->getWholesaleData()->getstatus() == 0): ?>
+                <div class="actions">
+                    <button title="Send Email" class="action-default primary">
+                        <span>Send Email</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+            </form>
+        </div>
+    </div>
+</div>

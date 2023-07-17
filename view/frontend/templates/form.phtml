@@ -1,0 +1,104 @@
+<?php
+/**
+ * Form Add Wholesale Contact Template
+ *
+ * @author huynq8 ( huynq8@smartosc.com )
+ *
+ * @var $block \Dev\Wholesale\Block\Customer\Wholesale\Add
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if ($block->getWholesales() && count($block->getWholesales())): ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('You have requested to import this product.')) ?></span></div>
+<?php else: ?>
+    <form class="form contact"
+          action="<?= $block->getFormAction() ?>"
+          id="contact-form"
+          method="post"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <div class="field name required">
+                <label class="label"
+                       for="customer_name"><span><?= $escaper->escapeHtml(__('Customer Name')) ?></span></label>
+                <div class="control">
+                    <input name="customer_name"
+                           id="customer_name"
+                           title="<?= $escaper->escapeHtmlAttr(__('Customer Name')) ?>"
+                           value="<?= $block->getFullNameCustomer($block->getCustomer()) ?>"
+                           class="input-text"
+                           type="text"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email"><span><?= $escaper->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="email"
+                           id="email"
+                           title="<?= $escaper->escapeHtmlAttr(__('Email')) ?>"
+                           value="<?= $block->getCustomer()->getEmail() ?>"
+                           class="input-text"
+                           type="email"
+                           data-validate="{required:true, 'validate-email':true}"
+                           data-mage-init='{"mage/trim-input":{}}'
+                    />
+                </div>
+            </div>
+            <div class="field telephone required">
+                <label class="label"
+                       for="phone_number"><span><?= $escaper->escapeHtml(__('Phone Number')) ?></span></label>
+                <div class="control">
+                    <input name="phone_number"
+                           id="phone_number"
+                           title="<?= $escaper->escapeHtmlAttr(__('Phone Number')) ?>"
+                           maxlength="10"
+                           minlength="10"
+                           class="input-text"
+                           type="tel"
+                           data-validate="{required:true} "
+                           pattern="0+[2|3|5|7|8|9]+[0-9]"
+                    />
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label"
+                       for="product_name"><span><?= $escaper->escapeHtml(__('Product Name')) ?></span></label>
+                <div class="control">
+                    <input name="product_name"
+                           id="product_name"
+                           title="<?= $escaper->escapeHtmlAttr(__('Product Name')) ?>"
+                           value="<?= $block->getProductData()->getName() ?>"
+                           class="input-text"
+                           type="text"
+                           readonly
+                    />
+                </div>
+            </div>
+            <div class="field message required">
+                <label class="label" for="message">
+                    <span><?= $escaper->escapeHtml(__('Message')) ?></span>
+                </label>
+                <div class="control">
+            <textarea name="message"
+                      id="message"
+                      title="<?= $escaper->escapeHtmlAttr(__('Message')) ?>"
+                      class="input-text"
+                      cols="5"
+                      rows="3"
+                      data-validate="{required:true}"></textarea>
+                </div>
+            </div>
+            <input type="hidden" name="product_id" value="<?= $block->getProductData()->getId() ?>">
+            <input type="hidden" name="customer_id" value="<?= $block->getCustomer()->getId() ?>">
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Submit')) ?>"
+                        class="action submit primary">
+                    <span><?= $escaper->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+<?php endif; ?>

@@ -1,0 +1,14 @@
+<?php
+/**
+ * Button Add Wholesale Contact Template
+ *
+ * @author huynq8 ( huynq8@smartosc.com )
+ *
+ * @var $block \Dev\Wholesale\Block\Product\View\Addto\Wholesale
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if ($block->checkWholesales()): ?>
+    <a style="padding-top:31px" href="<?= $escaper->escapeUrl($block->wholesaleUrl()) ?>"
+       class="action tocompare"><span><?= $escaper->escapeHtml(__('Add to wholesale')) ?></span></a>
+<?php endif; ?>

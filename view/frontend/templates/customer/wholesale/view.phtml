@@ -1,0 +1,44 @@
+<?php
+/**
+ * Form Add Wholesale Contact Template
+ *
+ * @author huynq8 ( huynq8@smartosc.com )
+ *
+ * @var \Dev\Wholesale\Block\Customer\Wholesale\View $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$product = $block->getProductData();
+?>
+<?php if ($product->getId()): ?>
+    <div class="customer-review view">
+        <div class="product-details">
+            <div class="product-media">
+                <a class="product-photo" href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">
+                    <?php /* customer_account_product_review_page */ ?>
+                    <?= $block->getImage($block->getProductData(), 'customer_account_product_review_page')->toHtml() ?>
+                </a>
+            </div>
+            <div class="product-info">
+                <h2 class="product-name"><?= $escaper->escapeHtml($product->getName()) ?></h2>
+                <b><?= $block->getProductPrice($product) ?></b>
+            </div>
+        </div>
+
+        <div class="wholesale-details">
+            <div class="wholesale-message">
+                <b class="wholesale-message-label"><?= $escaper->escapeHtml(__('Message : ')) ?></b>
+                <span
+                    class="wholesale-message-val"><?= $escaper->escapeHtml($block->getWholesaleData()->getMessage()) ?></span>
+            </div>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="secondary">
+            <a class="action back" href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>">
+                <span><?= $escaper->escapeHtml(__('Back to My Products Wholesale')) ?></span>
+            </a>
+        </div>
+    </div>
+<?php endif; ?>
